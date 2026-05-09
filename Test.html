@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>TA Dashboard</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f7fb;
+}
+
+/* Layout */
+.dashboard {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 240px;
+    background: linear-gradient(180deg, #0f4c81, #2a7de1);
+    color: white;
+    padding: 20px 15px;
+}
+
+/* Logo + Title */
+.logo-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.logo-title img {
+    width: 32px;
+}
+
+.logo-title h2 {
+    margin: 0;
+    font-size: 18px;
+}
+
+/* Section */
+.section {
+    font-size: 11px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin: 18px 10px 8px;
+}
+
+/* Links */
+.sidebar a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 6px;
+    transition: 0.2s;
+}
+
+.sidebar a:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.sidebar a.active {
+    background: white;
+    color: #0f4c81;
+    font-weight: 600;
+}
+
+/* Dropdown */
+.menu-title {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.menu-title:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+.submenu {
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s;
+}
+
+.submenu a {
+    padding: 8px 30px;
+    display: block;
+    color: white;
+}
+
+.menu-item.active .submenu {
+    max-height: 1000px; /* FIXED */
+}
+
+/* Arrow */
+.arrow {
+    transition: 0.3s;
+}
+.menu-item.active .arrow {
+    transform: rotate(45deg);
+}
+
+/* Main */
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    background: linear-gradient(135deg, #0f4c81, #2a7de1);
+    color: white;
+    padding: 18px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.user {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Home Button */
+.home-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: white;
+    color: #0f4c81;
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.home-btn:hover {
+    background: #e6f0ff;
+}
+
+/* Content */
+.content {
+    padding: 25px;
+}
+
+/* SEARCH */
+.search-box {
+    margin-bottom: 20px;
+}
+
+.search-box input {
+    width: 260px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 13px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #2a7de1;
+}
+
+/* KPI Cards */
+.kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.kpi-card {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+
+.kpi-card:hover {
+    transform: translateY(-3px);
+}
+
+.kpi-title {
+    font-size: 13px;
+    color: #777;
+}
+
+.kpi-value {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 5px;
+    color: #0f4c81;
+}
+
+/* timestamp */
+.timestamp {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+/* Main Cards */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    transition: 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+}
+</style>
+</head>
+
+<body>
+
+<div class="dashboard">
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+
+        <div class="logo-title">
+            <img src="https://raw.githubusercontent.com/santoshrai-dev/Scanner/main/logo.jpg">
+            <h2>TA Dashboard</h2>
+        </div>
+
+        <div class="section">Business Units</div>
+        <a href="https://santoshrai-dev.github.io/ta-dashboard-policy/">🏢 Policybazaar</a>
+        <a href="https://santoshrai-dev.github.io/ta-dashboard-paisa/">💼 Paisabazaar</a>
+
+        <div class="section">Reports</div>
+
+        <div class="menu-item" onclick="toggleMenu(this)">
+            <div class="menu-title">
+                <span>📊 All in one Form</span>
+                <span class="arrow">+</span>
+            </div>
+            <div class="submenu">
+                <a href="https://docs.google.com/spreadsheets/d/1yXlSDvPWHhBdBXOrPp_2HqplRsSGFO6ZdNKTNVhFMWo/edit?gid=23347298#gid=23347298">🏢 Policybazaar</a>
+                <a href="https://docs.google.com/spreadsheets/d/14Z7A74PYyjzTRLLGkRhj3xi7be1c7JCa3y0tXk00BpM/edit?gid=0#gid=0">💼 Paisabazaar</a>
+            </div>
+        </div>
+
+        <div class="menu-item" onclick="toggleMenu(this)">
+            <div class="menu-title">
+                <span>📈 Insight Board</span>
+                <span class="arrow">+</span>
+            </div>
+            <div class="submenu">
+                <a href="#">🏢 Recruiter Productivity</a>
+                <a href="#">💼 Sourcer Productivity</a>
+                <a href="#">🏢 MIS Productivity</a>
+                <a href="#">🏢 DVT Status</a>
+                <a href="#">🏢 BGV Status</a>
+                <a href="#">🏢 Rehire Summary</a>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Main -->
+    <div class="main">
+
+        <div class="header">
+            <div class="header-left">
+                <h1>Talent Acquisition Hub</h1>
+                <div class="user">Let’s get started 👋</div>
+            </div>
+            <a href="#" class="home-btn">🏠 Home</a>
+        </div>
+
+        <div class="content">
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Search anything...">
+            </div>
+
+            <div class="timestamp">Last updated: Today, 10:30 AM</div>
+
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-title">Live Hiring</div>
+                    <div class="kpi-value">101</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Pipeline</div>
+                    <div class="kpi-value">276</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-title">Offers Released</div>
+                    <div class="kpi-value">89</div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Welcome</h3>
+                    <p>Select from sidebar to access trackers.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Quick Insight</h3>
+                    <p>Hiring is trending upward this week 📈</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+// dropdown (single open at a time)
+function toggleMenu(menu) {
+    let allMenus = document.querySelectorAll(".menu-item");
+
+    allMenus.forEach(item => {
+        if (item !== menu) {
+            item.classList.remove("active");
+        }
+    });
+
+    menu.classList.toggle("active");
+}
+
+// search
+document.getElementById("searchInput").addEventListener("keyup", function() {
+    let val = this.value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        card.style.display = card.innerText.toLowerCase().includes(val) ? "" : "none";
+    });
+});
+</script>
+
+</body>
+</html>
