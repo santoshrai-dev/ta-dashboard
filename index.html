@@ -2,13 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TA Dashboard</title>
 
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 <style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
 body {
-    margin: 0;
     font-family: "Segoe UI", Arial, sans-serif;
     background: #f4f7fb;
+    overflow: hidden;
 }
 
 /* Layout */
@@ -19,27 +30,46 @@ body {
 
 /* Sidebar */
 .sidebar {
-    width: 240px;
+    width: 255px;
     background: linear-gradient(180deg, #0f4c81, #2a7de1);
     color: white;
     padding: 20px 15px;
+    overflow-y: auto;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    box-shadow: 4px 0 15px rgba(0,0,0,0.08);
 }
 
-/* Logo + Title */
+/* Logo */
 .logo-title {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 25px;
+    gap: 12px;
+    margin-bottom: 30px;
 }
 
 .logo-title img {
-    width: 32px;
+    width: 42px;
+    border-radius: 10px;
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
 }
 
 .logo-title h2 {
     margin: 0;
-    font-size: 18px;
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.sub-logo {
+    font-size: 11px;
+    opacity: 0.8;
+    margin-top: 2px;
+    letter-spacing: 0.4px;
 }
 
 /* Section */
@@ -48,23 +78,30 @@ body {
     text-transform: uppercase;
     opacity: 0.7;
     margin: 18px 10px 8px;
+    letter-spacing: 1px;
 }
 
 /* Links */
-.sidebar a {
+.sidebar a,
+.menu-title {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     color: white;
     text-decoration: none;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 11px 12px;
+    border-radius: 10px;
     margin-bottom: 6px;
-    transition: 0.2s;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    font-size: 14px;
 }
 
-.sidebar a:hover {
-    background: rgba(255,255,255,0.15);
+.sidebar a:hover,
+.menu-title:hover {
+    background: rgba(255,255,255,0.18);
+    transform: translateX(3px);
 }
 
 .sidebar a.active {
@@ -73,39 +110,27 @@ body {
     font-weight: 600;
 }
 
-/* Dropdown */
-.menu-title {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border-radius: 8px;
-    cursor: pointer;
-}
-
-.menu-title:hover {
-    background: rgba(255,255,255,0.15);
-}
-
+/* Submenu */
 .submenu {
     max-height: 0;
     overflow: hidden;
-    transition: 0.3s;
+    transition: max-height 0.35s ease;
 }
 
 .submenu a {
-    padding: 8px 30px;
-    display: block;
-    color: white;
+    padding: 9px 14px 9px 35px;
+    font-size: 13px;
 }
 
+/* Open Menu */
 .menu-item.active .submenu {
-    max-height: 1000px; /* FIXED */
+    max-height: 2000px;
 }
 
-/* Arrow */
 .arrow {
     transition: 0.3s;
 }
+
 .menu-item.active .arrow {
     transform: rotate(45deg);
 }
@@ -115,6 +140,7 @@ body {
     flex: 1;
     display: flex;
     flex-direction: column;
+    overflow-y: auto;
 }
 
 /* Header */
@@ -125,19 +151,33 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
 }
 
 .header-left {
     display: flex;
     flex-direction: column;
+    gap: 3px;
 }
 
 .header h1 {
-    margin: 0;
-    font-size: 22px;
+    font-size: 24px;
 }
 
 .user {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+/* Header Right */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#liveClock {
     font-size: 13px;
     opacity: 0.9;
 }
@@ -149,8 +189,8 @@ body {
     gap: 6px;
     background: white;
     color: #0f4c81;
-    padding: 6px 12px;
-    border-radius: 6px;
+    padding: 8px 14px;
+    border-radius: 8px;
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
@@ -164,44 +204,110 @@ body {
 /* Content */
 .content {
     padding: 25px;
+    animation: fadeIn 0.35s ease;
 }
 
-/* SEARCH */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, #ffffff, #eef5ff);
+    padding: 22px;
+    border-radius: 16px;
+    margin-bottom: 22px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+}
+
+.welcome-banner h2 {
+    color: #0f4c81;
+    margin-bottom: 6px;
+}
+
+.welcome-banner p {
+    color: #666;
+    font-size: 14px;
+}
+
+/* Search */
 .search-box {
     margin-bottom: 20px;
 }
 
-.search-box input {
-    width: 260px;
-    padding: 10px 14px;
-    border-radius: 8px;
+.search-wrapper {
+    position: relative;
+    width: 320px;
+}
+
+.search-wrapper i {
+    position: absolute;
+    top: 12px;
+    left: 14px;
+    color: #888;
+}
+
+.search-wrapper input {
+    width: 100%;
+    padding: 11px 14px 11px 40px;
+    border-radius: 10px;
     border: 1px solid #ddd;
     font-size: 13px;
     outline: none;
+    transition: 0.25s;
+    background: white;
 }
 
-.search-box input:focus {
+.search-wrapper input:focus {
     border-color: #2a7de1;
+    box-shadow: 0 0 0 4px rgba(42,125,225,0.15);
 }
 
-/* KPI Cards */
+/* Timestamp */
+.timestamp {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+/* KPI */
 .kpi-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
+    gap: 18px;
     margin-bottom: 25px;
 }
 
 .kpi-card {
     background: white;
-    padding: 18px;
-    border-radius: 12px;
+    padding: 20px;
+    border-radius: 14px;
     box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: 0.2s;
+    transition: 0.25s;
 }
 
 .kpi-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+}
+
+.kpi-card:nth-child(1) {
+    border-left: 5px solid #2a7de1;
+}
+
+.kpi-card:nth-child(2) {
+    border-left: 5px solid #00b894;
+}
+
+.kpi-card:nth-child(3) {
+    border-left: 5px solid #ff9800;
 }
 
 .kpi-title {
@@ -210,37 +316,84 @@ body {
 }
 
 .kpi-value {
-    font-size: 24px;
-    font-weight: 600;
-    margin-top: 5px;
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 6px;
     color: #0f4c81;
 }
 
-/* timestamp */
-.timestamp {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 20px;
-}
-
-/* Main Cards */
+/* Cards */
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
+    gap: 18px;
 }
 
 .card {
     background: white;
-    padding: 20px;
-    border-radius: 12px;
+    padding: 22px;
+    border-radius: 14px;
     box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-    transition: 0.2s;
+    transition: 0.25s;
 }
 
 .card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.08);
 }
+
+.card h3 {
+    margin-bottom: 10px;
+    color: #0f4c81;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    padding: 18px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    body {
+        overflow: auto;
+    }
+
+    .dashboard {
+        flex-direction: column;
+        height: auto;
+    }
+
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    .header {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .kpi-grid,
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-wrapper {
+        width: 100%;
+    }
+}
+
 </style>
 </head>
 
@@ -251,41 +404,90 @@ body {
     <!-- Sidebar -->
     <div class="sidebar">
 
+        <!-- Logo -->
         <div class="logo-title">
-            <img src="https://raw.githubusercontent.com/santoshrai-dev/Scanner/main/logo.jpg">
-            <h2>TA Dashboard</h2>
+
+            <img src="https://raw.githubusercontent.com/santoshrai-dev/Scanner/main/logo.jpg" alt="TA Logo">
+
+            <div class="logo-text">
+                <h2>TA Dashboard</h2>
+                <div class="sub-logo">Talent Acquisition Hub</div>
+            </div>
+
         </div>
 
+        <!-- Business Units -->
         <div class="section">Business Units</div>
-        <a href="https://santoshrai-dev.github.io/ta-dashboard-policy/">🏢 Policybazaar</a>
-        <a href="https://santoshrai-dev.github.io/ta-dashboard-paisa/">💼 Paisabazaar</a>
 
+        <a href="https://santoshrai-dev.github.io/ta-dashboard-policy/" target="_blank">
+            <span><i class="fa-solid fa-building"></i> Policybazaar</span>
+        </a>
+
+        <a href="https://santoshrai-dev.github.io/ta-dashboard-paisa/" target="_blank">
+            <span><i class="fa-solid fa-wallet"></i> Paisabazaar</span>
+        </a>
+
+        <!-- Reports -->
         <div class="section">Reports</div>
 
+        <!-- Forms -->
         <div class="menu-item" onclick="toggleMenu(this)">
+
             <div class="menu-title">
-                <span>📊 All in one Form</span>
+                <span><i class="fa-solid fa-table"></i> All in One Form</span>
                 <span class="arrow">+</span>
             </div>
+
             <div class="submenu">
-                <a href="https://docs.google.com/spreadsheets/d/1yXlSDvPWHhBdBXOrPp_2HqplRsSGFO6ZdNKTNVhFMWo/edit?gid=23347298#gid=23347298">🏢 Policybazaar</a>
-                <a href="https://docs.google.com/spreadsheets/d/14Z7A74PYyjzTRLLGkRhj3xi7be1c7JCa3y0tXk00BpM/edit?gid=0#gid=0">💼 Paisabazaar</a>
+
+                <a href="https://docs.google.com/spreadsheets/d/1yXlSDvPWHhBdBXOrPp_2HqplRsSGFO6ZdNKTNVhFMWo/edit?gid=23347298#gid=23347298" target="_blank">
+                    Policybazaar
+                </a>
+
+                <a href="https://docs.google.com/spreadsheets/d/14Z7A74PYyjzTRLLGkRhj3xi7be1c7JCa3y0tXk00BpM/edit?gid=0#gid=0" target="_blank">
+                    Paisabazaar
+                </a>
+
             </div>
+
         </div>
 
+        <!-- Insight Board -->
         <div class="menu-item" onclick="toggleMenu(this)">
+
             <div class="menu-title">
-                <span>📈 Insight Board</span>
+                <span><i class="fa-solid fa-chart-line"></i> Insight Board</span>
                 <span class="arrow">+</span>
             </div>
+
             <div class="submenu">
-                <a href="https://app.powerbi.com/links/OL_ch93HOA?ctid=432e8f5f-b0df-45ff-b26a-1513099cc567&pbi_source=linkShare">🏢 Recruiter Productivity</a>
-                <a href="https://app.powerbi.com/links/jAnoK1JuST?ctid=432e8f5f-b0df-45ff-b26a-1513099cc567&pbi_source=linkShare">💼 Sourcer Productivity</a>
-                <a href="#">🏢 MIS Productivity</a>
-                <a href="https://datastudio.google.com/u/0/reporting/01cb8cb7-bfa0-43c4-97bc-b3496a293448/page/iQsvF/edit">🏢 DVT Status</a>
-                <a href="https://datastudio.google.com/u/0/reporting/94e75203-9ee5-4dc0-a16b-adb1c391ab3d/page/8Z9sF">🏢 BGV Status</a>
-                <a href="https://docs.google.com/spreadsheets/d/1695lfIfbsQJisLxflY5V2BgvT7remfvMkdNb7gzuWuQ/edit?gid=268568871#gid=268568871">🏢 Rehire Summary</a>
+
+                <a href="https://app.powerbi.com/links/OL_ch93HOA?ctid=432e8f5f-b0df-45ff-b26a-1513099cc567&pbi_source=linkShare" target="_blank">
+                    Recruiter Productivity
+                </a>
+
+                <a href="https://app.powerbi.com/links/jAnoK1JuST?ctid=432e8f5f-b0df-45ff-b26a-1513099cc567&pbi_source=linkShare" target="_blank">
+                    Sourcer Productivity
+                </a>
+
+                <a href="#">
+                    MIS Productivity
+                </a>
+
+                <a href="https://datastudio.google.com/u/0/reporting/01cb8cb7-bfa0-43c4-97bc-b3496a293448/page/iQsvF/edit" target="_blank">
+                    DVT Status
+                </a>
+
+                <a href="https://datastudio.google.com/u/0/reporting/94e75203-9ee5-4dc0-a16b-adb1c391ab3d/page/8Z9sF" target="_blank">
+                    BGV Status
+                </a>
+
+                <a href="https://docs.google.com/spreadsheets/d/1695lfIfbsQJisLxflY5V2BgvT7remfvMkdNb7gzuWuQ/edit?gid=268568871#gid=268568871" target="_blank">
+                    Rehire Summary
+                </a>
+
             </div>
+
         </div>
 
     </div>
@@ -293,49 +495,95 @@ body {
     <!-- Main -->
     <div class="main">
 
+        <!-- Header -->
         <div class="header">
+
             <div class="header-left">
                 <h1>Talent Acquisition Hub</h1>
-                <div class="user">Let’s get started 👋</div>
+                <div class="user">Welcome back, Santosh 👋</div>
             </div>
-            <a href="https://santoshrai-dev.github.io/ta-dashboard/" class="home-btn">🏠 Home</a>
+
+            <div class="header-right">
+
+                <div id="liveClock"></div>
+
+                <a href="https://santoshrai-dev.github.io/ta-dashboard/" class="home-btn">
+                    <i class="fa-solid fa-house"></i> Home
+                </a>
+
+            </div>
+
         </div>
 
+        <!-- Content -->
         <div class="content">
 
-            <div class="search-box">
-                <input type="text" id="searchInput" placeholder="Search anything...">
+            <!-- Welcome -->
+            <div class="welcome-banner">
+                <h2>Good Morning, Santosh 👋</h2>
+                <p>Here’s what’s happening in hiring today.</p>
             </div>
 
-            <div class="timestamp">Last updated: Today, 10:30 AM</div>
+            <!-- Search -->
+            <div class="search-box">
 
+                <div class="search-wrapper">
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <input
+                        type="text"
+                        id="searchInput"
+                        placeholder="Search dashboard..."
+                    >
+
+                </div>
+
+            </div>
+
+            <!-- Timestamp -->
+            <div class="timestamp" id="timestamp"></div>
+
+            <!-- KPI -->
             <div class="kpi-grid">
+
                 <div class="kpi-card">
                     <div class="kpi-title">Live Hiring</div>
                     <div class="kpi-value">101</div>
                 </div>
+
                 <div class="kpi-card">
                     <div class="kpi-title">Pipeline</div>
                     <div class="kpi-value">276</div>
                 </div>
+
                 <div class="kpi-card">
                     <div class="kpi-title">Offers Released</div>
                     <div class="kpi-value">89</div>
                 </div>
+
             </div>
 
+            <!-- Cards -->
             <div class="grid">
+
                 <div class="card">
                     <h3>Welcome</h3>
-                    <p>Select from sidebar to access trackers.</p>
+                    <p>Select from sidebar to access trackers and reports.</p>
                 </div>
 
                 <div class="card">
                     <h3>Quick Insight</h3>
                     <p>Hiring is trending upward this week 📈</p>
                 </div>
+
             </div>
 
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Built by Santosh Rai • TA Analytics Hub
         </div>
 
     </div>
@@ -343,8 +591,10 @@ body {
 </div>
 
 <script>
-// dropdown (single open at a time)
+
+/* Sidebar Dropdown */
 function toggleMenu(menu) {
+
     let allMenus = document.querySelectorAll(".menu-item");
 
     allMenus.forEach(item => {
@@ -356,15 +606,42 @@ function toggleMenu(menu) {
     menu.classList.toggle("active");
 }
 
-// search
+/* Search */
 document.getElementById("searchInput").addEventListener("keyup", function() {
+
     let val = this.value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
+
+    let cards = document.querySelectorAll(".card, .submenu a, .kpi-card");
 
     cards.forEach(card => {
-        card.style.display = card.innerText.toLowerCase().includes(val) ? "" : "none";
+
+        card.style.display =
+            card.innerText.toLowerCase().includes(val)
+            ? ""
+            : "none";
+
     });
+
 });
+
+/* Live Clock */
+function updateClock() {
+
+    const now = new Date();
+
+    document.getElementById("liveClock").innerText =
+        now.toLocaleString();
+
+}
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+/* Timestamp */
+document.getElementById("timestamp").innerText =
+    "Last updated: " + new Date().toLocaleString();
+
 </script>
 
 </body>
