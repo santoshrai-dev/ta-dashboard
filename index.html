@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TA Dashboard</title>
 
-<!-- Font Awesome -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
 <style>
@@ -417,7 +416,7 @@ body{
         <!-- Reports -->
         <div class="section">Reports</div>
 
-        <!-- Forms -->
+        <!-- All in One Form -->
         <div class="menu-item" onclick="toggleMenu(this)">
 
             <div class="menu-title">
@@ -449,29 +448,12 @@ body{
 
             <div class="submenu">
 
-                <a href="https://app.powerbi.com/links/OL_ch93HOA?ctid=432e8f5f-b0df-45ff-b26a-1513099cc567&pbi_source=linkShare" target="_blank">
-                    Recruiter Productivity
-                </a>
-
-                <a href="https://app.powerbi.com/links/jAnoK1JuST?ctid=432e8f5f-b0df-45ff-b26a-1513099cc567&pbi_source=linkShare" target="_blank">
-                    Sourcer Productivity
-                </a>
-
-                <a href="#">
-                    MIS Productivity
-                </a>
-
-                <a href="https://datastudio.google.com/u/0/reporting/01cb8cb7-bfa0-43c4-97bc-b3496a293448/page/iQsvF/edit" target="_blank">
-                    DVT Status
-                </a>
-
-                <a href="https://datastudio.google.com/u/0/reporting/94e75203-9ee5-4dc0-a16b-adb1c391ab3d/page/8Z9sF" target="_blank">
-                    BGV Status
-                </a>
-
-                <a href="https://docs.google.com/spreadsheets/d/1695lfIfbsQJisLxflY5V2BgvT7remfvMkdNb7gzuWuQ/edit?gid=268568871#gid=268568871" target="_blank">
-                    Rehire Summary
-                </a>
+                <a href="#">Recruiter Productivity</a>
+                <a href="#">Sourcer Productivity</a>
+                <a href="#">MIS Productivity</a>
+                <a href="#">DVT Status</a>
+                <a href="#">BGV Status</a>
+                <a href="#">Rehire Summary</a>
 
             </div>
 
@@ -503,11 +485,13 @@ body{
 
         <div class="content">
 
+            <!-- Welcome -->
             <div class="welcome-banner">
                 <h2>Good Morning, Santosh 👋</h2>
                 <p>Here’s what’s happening in hiring today.</p>
             </div>
 
+            <!-- KPI -->
             <div class="kpi-grid">
 
                 <div class="kpi-card">
@@ -523,6 +507,21 @@ body{
                 <div class="kpi-card">
                     <div class="kpi-title">Offers Released</div>
                     <div class="kpi-value">89</div>
+                </div>
+
+            </div>
+
+            <!-- Cards -->
+            <div class="grid">
+
+                <div class="card">
+                    <h3>Welcome</h3>
+                    <p>Select from sidebar to access trackers and reports.</p>
+                </div>
+
+                <div class="card">
+                    <h3>Quick Insight</h3>
+                    <p>Hiring is trending upward this week 📈</p>
                 </div>
 
             </div>
@@ -603,9 +602,7 @@ function toggleMenu(menu){
     allMenus.forEach(item => {
 
         if(item !== menu){
-
             item.classList.remove("active");
-
         }
 
     });
@@ -703,9 +700,7 @@ document
 .addEventListener("keypress",function(e){
 
     if(e.key === "Enter"){
-
         sendSantoshMessage();
-
     }
 
 });
