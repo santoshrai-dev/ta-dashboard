@@ -16,382 +16,369 @@
     box-sizing:border-box;
 }
 
-body {
-    font-family: "Segoe UI", Arial, sans-serif;
-    background: #f4f7fb;
-    overflow: hidden;
+body{
+    font-family:"Segoe UI", Arial, sans-serif;
+    background:#f4f7fb;
+    overflow:hidden;
 }
 
 /* Layout */
-.dashboard {
-    display: flex;
-    height: 100vh;
+.dashboard{
+    display:flex;
+    height:100vh;
 }
 
 /* Sidebar */
-.sidebar {
-    width: 255px;
-    background: linear-gradient(180deg, #0f4c81, #2a7de1);
-    color: white;
-    padding: 20px 15px;
-    overflow-y: auto;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    box-shadow: 4px 0 15px rgba(0,0,0,0.08);
+.sidebar{
+    width:255px;
+    background:linear-gradient(180deg,#0f4c81,#2a7de1);
+    color:white;
+    padding:20px 15px;
+    overflow-y:auto;
+    position:sticky;
+    top:0;
+    height:100vh;
+    box-shadow:4px 0 15px rgba(0,0,0,0.08);
 }
 
 /* Logo */
-.logo-title {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 30px;
+.logo-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:30px;
 }
 
-.logo-title img {
-    width: 42px;
-    border-radius: 10px;
+.logo-title img{
+    width:42px;
+    border-radius:10px;
 }
 
-.logo-text {
-    display: flex;
-    flex-direction: column;
+.logo-text{
+    display:flex;
+    flex-direction:column;
 }
 
-.logo-title h2 {
-    margin: 0;
-    font-size: 19px;
-    font-weight: 700;
+.logo-title h2{
+    font-size:19px;
+    font-weight:700;
 }
 
-.sub-logo {
-    font-size: 11px;
-    opacity: 0.8;
-    margin-top: 2px;
-    letter-spacing: 0.4px;
+.sub-logo{
+    font-size:11px;
+    opacity:0.8;
+    margin-top:2px;
+    letter-spacing:0.4px;
 }
 
 /* Section */
-.section {
-    font-size: 11px;
-    text-transform: uppercase;
-    opacity: 0.7;
-    margin: 18px 10px 8px;
-    letter-spacing: 1px;
+.section{
+    font-size:11px;
+    text-transform:uppercase;
+    opacity:0.7;
+    margin:18px 10px 8px;
+    letter-spacing:1px;
 }
 
 /* Links */
 .sidebar a,
-.menu-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    color: white;
-    text-decoration: none;
-    padding: 11px 12px;
-    border-radius: 10px;
-    margin-bottom: 6px;
-    transition: all 0.25s ease;
-    cursor: pointer;
-    font-size: 14px;
+.menu-title{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:10px;
+    color:white;
+    text-decoration:none;
+    padding:11px 12px;
+    border-radius:10px;
+    margin-bottom:6px;
+    transition:all 0.25s ease;
+    cursor:pointer;
+    font-size:14px;
 }
 
 .sidebar a:hover,
-.menu-title:hover {
-    background: rgba(255,255,255,0.18);
-    transform: translateX(3px);
-}
-
-.sidebar a.active {
-    background: white;
-    color: #0f4c81;
-    font-weight: 600;
+.menu-title:hover{
+    background:rgba(255,255,255,0.18);
+    transform:translateX(3px);
 }
 
 /* Submenu */
-.submenu {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.35s ease;
+.submenu{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height 0.35s ease;
 }
 
-.submenu a {
-    padding: 9px 14px 9px 35px;
-    font-size: 13px;
+.submenu a{
+    padding:9px 14px 9px 35px;
+    font-size:13px;
 }
 
-/* Open Menu */
-.menu-item.active .submenu {
-    max-height: 2000px;
+.menu-item.active .submenu{
+    max-height:2000px;
 }
 
-.arrow {
-    transition: 0.3s;
+.arrow{
+    transition:0.3s;
 }
 
-.menu-item.active .arrow {
-    transform: rotate(45deg);
+.menu-item.active .arrow{
+    transform:rotate(45deg);
 }
 
 /* Main */
-.main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow-y: auto;
+.main{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    overflow-y:auto;
 }
 
 /* Header */
-.header {
-    background: linear-gradient(135deg, #0f4c81, #2a7de1);
-    color: white;
-    padding: 18px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+.header{
+    background:linear-gradient(135deg,#0f4c81,#2a7de1);
+    color:white;
+    padding:18px 30px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
 
-.header-left {
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+.header-left{
+    display:flex;
+    flex-direction:column;
+    gap:3px;
 }
 
-.header h1 {
-    font-size: 24px;
+.header h1{
+    font-size:24px;
 }
 
-.user {
-    font-size: 13px;
-    opacity: 0.9;
+.user{
+    font-size:13px;
+    opacity:0.9;
 }
 
-/* Header Right */
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.header-right{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-#liveClock {
-    font-size: 13px;
-    opacity: 0.9;
+#liveClock{
+    font-size:13px;
 }
 
 /* Home Button */
-.home-btn {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    background: white;
-    color: #0f4c81;
-    padding: 8px 14px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 600;
-    transition: 0.2s;
-}
-
-.home-btn:hover {
-    background: #e6f0ff;
+.home-btn{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    background:white;
+    color:#0f4c81;
+    padding:8px 14px;
+    border-radius:8px;
+    text-decoration:none;
+    font-size:13px;
+    font-weight:600;
 }
 
 /* Content */
-.content {
-    padding: 25px;
-    animation: fadeIn 0.35s ease;
+.content{
+    padding:25px;
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+/* Welcome */
+.welcome-banner{
+    background:linear-gradient(135deg,#ffffff,#eef5ff);
+    padding:22px;
+    border-radius:16px;
+    margin-bottom:22px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.04);
 }
 
-/* Welcome Banner */
-.welcome-banner {
-    background: linear-gradient(135deg, #ffffff, #eef5ff);
-    padding: 22px;
-    border-radius: 16px;
-    margin-bottom: 22px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+.welcome-banner h2{
+    color:#0f4c81;
+    margin-bottom:6px;
 }
 
-.welcome-banner h2 {
-    color: #0f4c81;
-    margin-bottom: 6px;
-}
-
-.welcome-banner p {
-    color: #666;
-    font-size: 14px;
-}
-
-/* Search */
-.search-box {
-    margin-bottom: 20px;
-}
-
-.search-wrapper {
-    position: relative;
-    width: 320px;
-}
-
-.search-wrapper i {
-    position: absolute;
-    top: 12px;
-    left: 14px;
-    color: #888;
-}
-
-.search-wrapper input {
-    width: 100%;
-    padding: 11px 14px 11px 40px;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    font-size: 13px;
-    outline: none;
-    transition: 0.25s;
-    background: white;
-}
-
-.search-wrapper input:focus {
-    border-color: #2a7de1;
-    box-shadow: 0 0 0 4px rgba(42,125,225,0.15);
-}
-
-/* Timestamp */
-.timestamp {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 20px;
+.welcome-banner p{
+    color:#666;
+    font-size:14px;
 }
 
 /* KPI */
-.kpi-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
-    margin-bottom: 25px;
+.kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    margin-bottom:25px;
 }
 
-.kpi-card {
-    background: white;
-    padding: 20px;
-    border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: 0.25s;
+.kpi-card{
+    background:white;
+    padding:20px;
+    border-radius:14px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.05);
 }
 
-.kpi-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+.kpi-title{
+    font-size:13px;
+    color:#777;
 }
 
-.kpi-card:nth-child(1) {
-    border-left: 5px solid #2a7de1;
-}
-
-.kpi-card:nth-child(2) {
-    border-left: 5px solid #00b894;
-}
-
-.kpi-card:nth-child(3) {
-    border-left: 5px solid #ff9800;
-}
-
-.kpi-title {
-    font-size: 13px;
-    color: #777;
-}
-
-.kpi-value {
-    font-size: 28px;
-    font-weight: 700;
-    margin-top: 6px;
-    color: #0f4c81;
+.kpi-value{
+    font-size:28px;
+    font-weight:700;
+    margin-top:6px;
+    color:#0f4c81;
 }
 
 /* Cards */
-.grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
 }
 
-.card {
-    background: white;
-    padding: 22px;
-    border-radius: 14px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-    transition: 0.25s;
+.card{
+    background:white;
+    padding:22px;
+    border-radius:14px;
+    box-shadow:0 6px 18px rgba(0,0,0,0.05);
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.08);
-}
-
-.card h3 {
-    margin-bottom: 10px;
-    color: #0f4c81;
+.card h3{
+    margin-bottom:10px;
+    color:#0f4c81;
 }
 
 /* Footer */
-.footer {
-    text-align: center;
-    padding: 18px;
-    font-size: 12px;
-    color: #777;
+.footer{
+    text-align:center;
+    padding:18px;
+    font-size:12px;
+    color:#777;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
+/* CHATBOT */
+.santosh-chat-btn{
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:#0f4c81;
+    color:#fff;
+    font-size:24px;
+    cursor:pointer;
+    z-index:9999;
+    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+}
 
-    body {
-        overflow: auto;
+.santosh-chatbox{
+    position:fixed;
+    bottom:90px;
+    right:20px;
+    width:320px;
+    height:420px;
+    background:#fff;
+    border-radius:16px;
+    overflow:hidden;
+    display:none;
+    flex-direction:column;
+    z-index:9999;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+}
+
+.santosh-header{
+    background:linear-gradient(135deg,#0f4c81,#2a7de1);
+    color:#fff;
+    padding:15px;
+    font-weight:600;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.santosh-messages{
+    flex:1;
+    padding:15px;
+    overflow-y:auto;
+    background:#f4f7fb;
+}
+
+.santosh-msg,
+.user-msg{
+    padding:10px 14px;
+    margin-bottom:10px;
+    border-radius:12px;
+    max-width:85%;
+    font-size:13px;
+}
+
+.santosh-msg{
+    background:#e8f1ff;
+    color:#0f4c81;
+}
+
+.user-msg{
+    background:#0f4c81;
+    color:#fff;
+    margin-left:auto;
+}
+
+.santosh-input{
+    display:flex;
+    border-top:1px solid #eee;
+}
+
+.santosh-input input{
+    flex:1;
+    border:none;
+    padding:14px;
+    outline:none;
+}
+
+.santosh-input button{
+    width:60px;
+    border:none;
+    background:#2a7de1;
+    color:#fff;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+
+    body{
+        overflow:auto;
     }
 
-    .dashboard {
-        flex-direction: column;
-        height: auto;
+    .dashboard{
+        flex-direction:column;
+        height:auto;
     }
 
-    .sidebar {
-        width: 100%;
-        height: auto;
-        position: relative;
-    }
-
-    .header {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
-    }
-
-    .header-right {
-        width: 100%;
-        justify-content: space-between;
+    .sidebar{
+        width:100%;
+        height:auto;
+        position:relative;
     }
 
     .kpi-grid,
-    .grid {
-        grid-template-columns: 1fr;
+    .grid{
+        grid-template-columns:1fr;
     }
 
-    .search-wrapper {
-        width: 100%;
+    .santosh-chatbox{
+        width:92%;
+        right:4%;
     }
+
 }
 
 </style>
@@ -407,7 +394,7 @@ body {
         <!-- Logo -->
         <div class="logo-title">
 
-            <img src="https://raw.githubusercontent.com/santoshrai-dev/Scanner/main/logo.jpg" alt="TA Logo">
+            <img src="https://raw.githubusercontent.com/santoshrai-dev/Scanner/main/logo.jpg">
 
             <div class="logo-text">
                 <h2>TA Dashboard</h2>
@@ -495,7 +482,6 @@ body {
     <!-- Main -->
     <div class="main">
 
-        <!-- Header -->
         <div class="header">
 
             <div class="header-left">
@@ -507,7 +493,7 @@ body {
 
                 <div id="liveClock"></div>
 
-                <a href="https://santoshrai-dev.github.io/ta-dashboard/" class="home-btn">
+                <a href="#" class="home-btn">
                     <i class="fa-solid fa-house"></i> Home
                 </a>
 
@@ -515,36 +501,13 @@ body {
 
         </div>
 
-        <!-- Content -->
         <div class="content">
 
-            <!-- Welcome -->
             <div class="welcome-banner">
                 <h2>Good Morning, Santosh 👋</h2>
                 <p>Here’s what’s happening in hiring today.</p>
             </div>
 
-            <!-- Search -->
-            <div class="search-box">
-
-                <div class="search-wrapper">
-
-                    <i class="fa-solid fa-magnifying-glass"></i>
-
-                    <input
-                        type="text"
-                        id="searchInput"
-                        placeholder="Search dashboard..."
-                    >
-
-                </div>
-
-            </div>
-
-            <!-- Timestamp -->
-            <div class="timestamp" id="timestamp"></div>
-
-            <!-- KPI -->
             <div class="kpi-grid">
 
                 <div class="kpi-card">
@@ -564,24 +527,8 @@ body {
 
             </div>
 
-            <!-- Cards -->
-            <div class="grid">
-
-                <div class="card">
-                    <h3>Welcome</h3>
-                    <p>Select from sidebar to access trackers and reports.</p>
-                </div>
-
-                <div class="card">
-                    <h3>Quick Insight</h3>
-                    <p>Hiring is trending upward this week 📈</p>
-                </div>
-
-            </div>
-
         </div>
 
-        <!-- Footer -->
         <div class="footer">
             Built by Santosh Rai • TA Analytics Hub
         </div>
@@ -590,42 +537,84 @@ body {
 
 </div>
 
+<!-- Chat Button -->
+<button class="santosh-chat-btn" onclick="toggleSantoshBot()">
+    <i class="fa-solid fa-robot"></i>
+</button>
+
+<!-- Chatbot -->
+<div class="santosh-chatbox" id="santoshBot">
+
+    <div class="santosh-header">
+
+        <span>Santosh Rai</span>
+
+        <div style="display:flex; align-items:center; gap:14px;">
+
+            <i
+                class="fa-solid fa-trash"
+                style="cursor:pointer;"
+                title="Clear Chat"
+                onclick="clearSantoshChat()"
+            ></i>
+
+            <span
+                style="cursor:pointer;"
+                onclick="toggleSantoshBot()"
+            >
+                ✕
+            </span>
+
+        </div>
+
+    </div>
+
+    <div class="santosh-messages" id="santoshMessages">
+
+        <div class="santosh-msg">
+            👋 Hi, I am Santosh Rai. How can I help you?
+        </div>
+
+    </div>
+
+    <div class="santosh-input">
+
+        <input
+            type="text"
+            id="santoshInput"
+            placeholder="Type message..."
+        >
+
+        <button onclick="sendSantoshMessage()">
+            <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+    </div>
+
+</div>
+
 <script>
 
 /* Sidebar Dropdown */
-function toggleMenu(menu) {
+function toggleMenu(menu){
 
     let allMenus = document.querySelectorAll(".menu-item");
 
     allMenus.forEach(item => {
-        if (item !== menu) {
+
+        if(item !== menu){
+
             item.classList.remove("active");
+
         }
+
     });
 
     menu.classList.toggle("active");
 }
 
-/* Search */
-document.getElementById("searchInput").addEventListener("keyup", function() {
-
-    let val = this.value.toLowerCase();
-
-    let cards = document.querySelectorAll(".card, .submenu a, .kpi-card");
-
-    cards.forEach(card => {
-
-        card.style.display =
-            card.innerText.toLowerCase().includes(val)
-            ? ""
-            : "none";
-
-    });
-
-});
-
 /* Live Clock */
-function updateClock() {
+function updateClock(){
 
     const now = new Date();
 
@@ -634,13 +623,92 @@ function updateClock() {
 
 }
 
-setInterval(updateClock, 1000);
+setInterval(updateClock,1000);
 
 updateClock();
 
-/* Timestamp */
-document.getElementById("timestamp").innerText =
-    "Last updated: " + new Date().toLocaleString();
+/* Toggle Chatbot */
+function toggleSantoshBot(){
+
+    let bot = document.getElementById("santoshBot");
+
+    bot.style.display =
+        bot.style.display === "flex"
+        ? "none"
+        : "flex";
+}
+
+/* Clear Chat */
+function clearSantoshChat(){
+
+    document.getElementById("santoshMessages").innerHTML = `
+
+        <div class="santosh-msg">
+            👋 Hi, I am Santosh Rai. How can I help you?
+        </div>
+
+    `;
+}
+
+/* Send Message */
+function sendSantoshMessage(){
+
+    let input = document.getElementById("santoshInput");
+
+    let text = input.value.trim();
+
+    if(text === "") return;
+
+    let messages = document.getElementById("santoshMessages");
+
+    let userMsg = document.createElement("div");
+
+    userMsg.className = "user-msg";
+
+    userMsg.innerText = text;
+
+    messages.appendChild(userMsg);
+
+    let botMsg = document.createElement("div");
+
+    botMsg.className = "santosh-msg";
+
+    let reply = "I am here to help you.";
+
+    if(text.toLowerCase().includes("hello")){
+        reply = "Hello User 👋";
+    }
+    else if(text.toLowerCase().includes("hiring")){
+        reply = "Hiring is trending upward this week 📈";
+    }
+    else if(text.toLowerCase().includes("offer")){
+        reply = "Offers released are currently at 89.";
+    }
+
+    setTimeout(() => {
+
+        botMsg.innerHTML = reply;
+
+        messages.appendChild(botMsg);
+
+        messages.scrollTop = messages.scrollHeight;
+
+    },500);
+
+    input.value = "";
+}
+
+document
+.getElementById("santoshInput")
+.addEventListener("keypress",function(e){
+
+    if(e.key === "Enter"){
+
+        sendSantoshMessage();
+
+    }
+
+});
 
 </script>
 
