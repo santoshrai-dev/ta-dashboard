@@ -6,6 +6,8 @@
 <title>TA Dashboard</title>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -15,10 +17,28 @@
     box-sizing:border-box;
 }
 
+:root{
+    --ink:#0b2540;
+    --ink-2:#123a63;
+    --blue:#1f6fd1;
+    --amber:#f2a93b;
+    --green:#2ea87a;
+    --paper:#f3f6fb;
+    --card:#ffffff;
+    --slate:#5b6780;
+    --slate-dark:#28324a;
+    --border:#e7ecf5;
+}
+
 body{
-    font-family:"Segoe UI", Arial, sans-serif;
-    background:#f4f7fb;
+    font-family:"Inter", "Segoe UI", Arial, sans-serif;
+    background:var(--paper);
     overflow:hidden;
+    color:var(--slate-dark);
+}
+
+h1,h2,h3{
+    font-family:"Sora","Segoe UI",sans-serif;
 }
 
 /* Layout */
@@ -29,28 +49,38 @@ body{
 
 /* Sidebar */
 .sidebar{
-    width:255px;
-    background:linear-gradient(180deg,#0f4c81,#2a7de1);
+    width:260px;
+    background:
+        radial-gradient(120% 140% at 0% 0%, rgba(255,255,255,0.08), transparent 60%),
+        linear-gradient(190deg,var(--ink),var(--ink-2) 65%,var(--blue));
     color:white;
-    padding:20px 15px;
+    padding:22px 16px;
     overflow-y:auto;
     position:sticky;
     top:0;
     height:100vh;
-    box-shadow:4px 0 15px rgba(0,0,0,0.08);
+    box-shadow:4px 0 20px rgba(4,20,40,0.18);
 }
+
+.sidebar::-webkit-scrollbar{ width:6px; }
+.sidebar::-webkit-scrollbar-thumb{ background:rgba(255,255,255,0.2); border-radius:10px; }
 
 /* Logo */
 .logo-title{
     display:flex;
     align-items:center;
     gap:12px;
-    margin-bottom:30px;
+    margin-bottom:28px;
+    padding-bottom:20px;
+    border-bottom:1px solid rgba(255,255,255,0.14);
 }
 
 .logo-title img{
-    width:42px;
+    width:40px;
+    height:40px;
+    object-fit:cover;
     border-radius:10px;
+    box-shadow:0 4px 14px rgba(0,0,0,0.25);
 }
 
 .logo-text{
@@ -59,24 +89,27 @@ body{
 }
 
 .logo-title h2{
-    font-size:19px;
+    font-size:17px;
     font-weight:700;
+    letter-spacing:0.2px;
 }
 
 .sub-logo{
-    font-size:11px;
-    opacity:0.8;
+    font-size:10.5px;
+    opacity:0.75;
     margin-top:2px;
-    letter-spacing:0.4px;
+    letter-spacing:0.6px;
+    text-transform:uppercase;
 }
 
 /* Section */
 .section{
-    font-size:11px;
+    font-size:10.5px;
     text-transform:uppercase;
-    opacity:0.7;
-    margin:18px 10px 8px;
-    letter-spacing:1px;
+    opacity:0.6;
+    margin:20px 10px 10px;
+    letter-spacing:1.4px;
+    font-weight:600;
 }
 
 /* Links */
@@ -86,20 +119,39 @@ body{
     align-items:center;
     justify-content:space-between;
     gap:10px;
-    color:white;
+    color:rgba(255,255,255,0.92);
     text-decoration:none;
-    padding:11px 12px;
+    padding:11px 13px;
     border-radius:10px;
-    margin-bottom:6px;
-    transition:all 0.25s ease;
+    margin-bottom:4px;
+    transition:background 0.2s ease, transform 0.2s ease, padding-left 0.2s ease;
     cursor:pointer;
-    font-size:14px;
+    font-size:13.5px;
+    font-weight:500;
+    border-left:3px solid transparent;
+}
+
+.sidebar a span,
+.menu-title span:first-child{
+    display:flex;
+    align-items:center;
+    gap:11px;
+}
+
+.sidebar a i,
+.menu-title i{
+    width:16px;
+    text-align:center;
+    color:var(--amber);
+    opacity:0.9;
+    font-size:13px;
 }
 
 .sidebar a:hover,
 .menu-title:hover{
-    background:rgba(255,255,255,0.18);
-    transform:translateX(3px);
+    background:rgba(255,255,255,0.12);
+    border-left:3px solid var(--amber);
+    padding-left:16px;
 }
 
 /* Submenu */
@@ -110,20 +162,28 @@ body{
 }
 
 .submenu a{
-    padding:9px 14px 9px 35px;
-    font-size:13px;
+    padding:9px 12px 9px 38px;
+    font-size:12.5px;
+    opacity:0.88;
 }
 
 .menu-item.active .submenu{
     max-height:2000px;
 }
 
+.menu-item.active > .menu-title{
+    background:rgba(255,255,255,0.1);
+}
+
 .arrow{
-    transition:0.3s;
+    transition:transform 0.3s ease;
+    opacity:0.7;
+    font-weight:400;
 }
 
 .menu-item.active .arrow{
     transform:rotate(45deg);
+    color:var(--amber);
 }
 
 /* Main */
@@ -136,76 +196,109 @@ body{
 
 /* Header */
 .header{
-    background:linear-gradient(135deg,#0f4c81,#2a7de1);
+    background:linear-gradient(120deg,var(--ink),var(--blue) 140%);
     color:white;
-    padding:18px 30px;
+    padding:20px 32px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+    box-shadow:0 4px 18px rgba(4,20,40,0.12);
 }
 
 .header-left{
     display:flex;
     flex-direction:column;
-    gap:3px;
+    gap:4px;
 }
 
 .header h1{
-    font-size:24px;
+    font-size:22px;
+    font-weight:700;
+    letter-spacing:0.2px;
 }
 
 .user{
-    font-size:13px;
-    opacity:0.9;
+    font-size:12.5px;
+    opacity:0.85;
 }
 
 .header-right{
     display:flex;
     align-items:center;
-    gap:15px;
+    gap:18px;
 }
 
 #liveClock{
-    font-size:13px;
+    font-size:12.5px;
+    font-variant-numeric:tabular-nums;
+    letter-spacing:0.3px;
+    background:rgba(255,255,255,0.1);
+    padding:7px 12px;
+    border-radius:8px;
 }
 
 /* Home Button */
 .home-btn{
     display:flex;
     align-items:center;
-    gap:6px;
+    gap:7px;
     background:white;
-    color:#0f4c81;
-    padding:8px 14px;
-    border-radius:8px;
+    color:var(--ink);
+    padding:9px 16px;
+    border-radius:9px;
     text-decoration:none;
-    font-size:13px;
-    font-weight:600;
+    font-size:12.5px;
+    font-weight:700;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.home-btn:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 14px rgba(0,0,0,0.18);
 }
 
 /* Content */
 .content{
-    padding:25px;
+    padding:28px 32px;
 }
 
 /* Welcome */
 .welcome-banner{
-    background:linear-gradient(135deg,#ffffff,#eef5ff);
-    padding:22px;
+    background:linear-gradient(120deg,#ffffff,#eef5ff 120%);
+    padding:24px 26px;
     border-radius:16px;
-    margin-bottom:22px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.04);
+    margin-bottom:24px;
+    box-shadow:0 8px 22px rgba(15,76,129,0.06);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
 }
 
 .welcome-banner h2{
-    color:#0f4c81;
+    color:var(--ink);
     margin-bottom:6px;
+    font-size:20px;
 }
 
 .welcome-banner p{
-    color:#666;
-    font-size:14px;
+    color:var(--slate);
+    font-size:13.5px;
+}
+
+.welcome-icon{
+    width:52px;
+    height:52px;
+    min-width:52px;
+    border-radius:14px;
+    background:linear-gradient(135deg,var(--amber),#f7c978);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#7a4c0a;
+    font-size:22px;
+    box-shadow:0 8px 18px rgba(242,169,59,0.35);
 }
 
 /* KPI */
@@ -213,26 +306,64 @@ body{
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:18px;
-    margin-bottom:25px;
+    margin-bottom:26px;
 }
 
 .kpi-card{
-    background:white;
-    padding:20px;
+    background:var(--card);
+    padding:20px 22px;
     border-radius:14px;
-    box-shadow:0 8px 20px rgba(0,0,0,0.05);
+    box-shadow:0 8px 22px rgba(15,76,129,0.06);
+    border:1px solid var(--border);
+    border-top:3px solid var(--kpi-accent, var(--blue));
+    position:relative;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.kpi-card:hover{
+    transform:translateY(-3px);
+    box-shadow:0 14px 28px rgba(15,76,129,0.12);
+}
+
+.kpi-card:nth-child(1){ --kpi-accent:var(--blue); }
+.kpi-card:nth-child(2){ --kpi-accent:var(--amber); }
+.kpi-card:nth-child(3){ --kpi-accent:var(--green); }
+
+.kpi-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
 .kpi-title{
-    font-size:13px;
-    color:#777;
+    font-size:12.5px;
+    color:var(--slate);
+    font-weight:600;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+}
+
+.kpi-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:var(--kpi-accent, var(--blue));
+    box-shadow:0 0 0 0 rgba(31,111,209,0.5);
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{ box-shadow:0 0 0 0 rgba(31,111,209,0.35); }
+    70%{ box-shadow:0 0 0 8px rgba(31,111,209,0); }
+    100%{ box-shadow:0 0 0 0 rgba(31,111,209,0); }
 }
 
 .kpi-value{
-    font-size:28px;
+    font-family:"Sora",sans-serif;
+    font-size:30px;
     font-weight:700;
-    margin-top:6px;
-    color:#0f4c81;
+    margin-top:10px;
+    color:var(--ink);
 }
 
 /* Cards */
@@ -243,62 +374,87 @@ body{
 }
 
 .card{
-    background:white;
-    padding:22px;
+    background:var(--card);
+    padding:24px;
     border-radius:14px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.05);
+    box-shadow:0 6px 18px rgba(15,76,129,0.05);
+    border:1px solid var(--border);
 }
 
 .card h3{
     margin-bottom:10px;
-    color:#0f4c81;
+    color:var(--ink);
+    font-size:15.5px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.card h3 i{
+    color:var(--blue);
+    font-size:14px;
+}
+
+.card p{
+    color:var(--slate);
+    font-size:13.5px;
+    line-height:1.55;
 }
 
 /* Footer */
 .footer{
     text-align:center;
-    padding:18px;
-    font-size:12px;
-    color:#777;
+    padding:20px;
+    font-size:11.5px;
+    color:var(--slate);
+    letter-spacing:0.2px;
 }
 
 /* CHATBOT */
 .santosh-chat-btn{
     position:fixed;
-    bottom:20px;
-    right:20px;
-    width:60px;
-    height:60px;
+    bottom:22px;
+    right:22px;
+    width:58px;
+    height:58px;
     border:none;
     border-radius:50%;
-    background:#0f4c81;
+    background:linear-gradient(135deg,var(--ink),var(--blue));
     color:#fff;
-    font-size:24px;
+    font-size:22px;
     cursor:pointer;
     z-index:9999;
-    box-shadow:0 8px 20px rgba(0,0,0,0.2);
+    box-shadow:0 10px 24px rgba(15,76,129,0.35);
+    transition:transform 0.2s ease;
+}
+
+.santosh-chat-btn:hover{
+    transform:scale(1.06);
 }
 
 .santosh-chatbox{
     position:fixed;
-    bottom:90px;
-    right:20px;
-    width:320px;
-    height:420px;
+    bottom:92px;
+    right:22px;
+    width:325px;
+    height:430px;
     background:#fff;
-    border-radius:16px;
+    border-radius:18px;
     overflow:hidden;
     display:none;
     flex-direction:column;
     z-index:9999;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    box-shadow:0 16px 40px rgba(4,20,40,0.25);
+    border:1px solid var(--border);
 }
 
 .santosh-header{
-    background:linear-gradient(135deg,#0f4c81,#2a7de1);
+    background:linear-gradient(120deg,var(--ink),var(--blue) 140%);
     color:#fff;
-    padding:15px;
-    font-weight:600;
+    padding:16px 18px;
+    font-weight:700;
+    font-family:"Sora",sans-serif;
+    font-size:14px;
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -306,9 +462,9 @@ body{
 
 .santosh-messages{
     flex:1;
-    padding:15px;
+    padding:16px;
     overflow-y:auto;
-    background:#f4f7fb;
+    background:var(--paper);
 }
 
 .santosh-msg,
@@ -318,37 +474,48 @@ body{
     border-radius:12px;
     max-width:85%;
     font-size:13px;
+    line-height:1.4;
 }
 
 .santosh-msg{
     background:#e8f1ff;
-    color:#0f4c81;
+    color:var(--ink);
+    border-bottom-left-radius:4px;
 }
 
 .user-msg{
-    background:#0f4c81;
+    background:linear-gradient(120deg,var(--ink),var(--blue));
     color:#fff;
     margin-left:auto;
+    border-bottom-right-radius:4px;
 }
 
 .santosh-input{
     display:flex;
-    border-top:1px solid #eee;
+    border-top:1px solid var(--border);
 }
 
 .santosh-input input{
     flex:1;
     border:none;
-    padding:14px;
+    padding:14px 16px;
     outline:none;
+    font-size:13.5px;
+    font-family:"Inter",sans-serif;
 }
 
 .santosh-input button{
-    width:60px;
+    width:56px;
     border:none;
-    background:#2a7de1;
+    background:var(--blue);
     color:#fff;
     cursor:pointer;
+    font-size:14px;
+    transition:background 0.2s ease;
+}
+
+.santosh-input button:hover{
+    background:var(--ink);
 }
 
 @media(max-width:768px){
@@ -373,11 +540,20 @@ body{
         grid-template-columns:1fr;
     }
 
+    .welcome-banner{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
     .santosh-chatbox{
         width:92%;
         right:4%;
     }
 
+}
+
+@media(prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; }
 }
 
 </style>
@@ -488,25 +664,37 @@ body{
 
             <!-- Welcome -->
             <div class="welcome-banner">
-                <h2>Good Morning, Santosh 👋</h2>
-                <p>Here’s what’s happening in hiring today.</p>
+                <div>
+                    <h2>Good Morning, Santosh 👋</h2>
+                    <p>Here's what's happening in hiring today.</p>
+                </div>
+                <div class="welcome-icon"><i class="fa-solid fa-sun"></i></div>
             </div>
 
             <!-- KPI -->
             <div class="kpi-grid">
 
                 <div class="kpi-card">
-                    <div class="kpi-title">Live Hiring</div>
+                    <div class="kpi-top">
+                        <div class="kpi-title">Live Hiring</div>
+                        <div class="kpi-dot"></div>
+                    </div>
                     <div class="kpi-value">101</div>
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-title">Pipeline</div>
+                    <div class="kpi-top">
+                        <div class="kpi-title">Pipeline</div>
+                        <div class="kpi-dot"></div>
+                    </div>
                     <div class="kpi-value">276</div>
                 </div>
 
                 <div class="kpi-card">
-                    <div class="kpi-title">Offers Released</div>
+                    <div class="kpi-top">
+                        <div class="kpi-title">Offers Released</div>
+                        <div class="kpi-dot"></div>
+                    </div>
                     <div class="kpi-value">89</div>
                 </div>
 
@@ -516,12 +704,12 @@ body{
             <div class="grid">
 
                 <div class="card">
-                    <h3>Welcome</h3>
+                    <h3><i class="fa-solid fa-compass"></i> Welcome</h3>
                     <p>Select from sidebar to access trackers and reports.</p>
                 </div>
 
                 <div class="card">
-                    <h3>Quick Insight</h3>
+                    <h3><i class="fa-solid fa-arrow-trend-up"></i> Quick Insight</h3>
                     <p>Hiring is trending upward this week 📈</p>
                 </div>
 
